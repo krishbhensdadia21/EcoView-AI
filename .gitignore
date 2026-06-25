@@ -1,0 +1,44 @@
+﻿# Python
+venv/
+env/
+ENV/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.env
+.env.local
+firebase_credentials.json
+*.json
+
+# Node
+node_modules/
+.dist/
+dist/
+build/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Frontend specific
+frontend/node_modules/
+frontend/.dist/
+frontend/dist/
+
+# Backend specific
+backend/venv/
+backend/__pycache__/
+backend/.env
