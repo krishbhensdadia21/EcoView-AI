@@ -110,6 +110,8 @@ It is an intelligent AI-powered web platform that helps users identify electroni
 - Environmental researchers
 
 ## Project Structure
+
+```text
 .
 ├── backend/
 │   ├── main.py
@@ -158,3 +160,4 @@ It is an intelligent AI-powered web platform that helps users identify electroni
 │
 ├── .gitignore
 └── README.md
+```
