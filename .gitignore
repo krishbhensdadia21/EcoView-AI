@@ -1,0 +1,24 @@
+# Python virtual environments and caches
+backend/venv/
+backend/__pycache__/
+backend/*.pyc
+backend/.env
+backend/firebase_credentials.json
+
+# Node dependencies and build folders
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+# IDE configurations and temporary folders
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
