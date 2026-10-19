@@ -22,3 +22,5 @@ frontend/.env.production.local
 *.njsproj
 *.sln
 *.swp
+
+backend/.venv/
