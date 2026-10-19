@@ -10,7 +10,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import GoogleSignInButton from "../components/GoogleSignInButton";
-import useCountUp from "../hooks/useCountUp";
+import useCountUp from "../hooks/UseCountUp";
 
 const API = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
