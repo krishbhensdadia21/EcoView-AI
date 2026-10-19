@@ -4,7 +4,7 @@ import axios from "axios";
 import { Trophy, Crown, Leaf, Sparkles, Medal, TrendingUp, Zap, Users, Star, Flame } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import GoogleSignInButton from "../components/GoogleSignInButton";
-import useCountUp from "../hooks/useCountUp";
+import useCountUp from "../hooks/UseCountUp";
 
 const API = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
