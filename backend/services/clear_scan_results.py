@@ -16,6 +16,7 @@ so it picks up the same Firebase credentials your app already uses.
 
 import os
 import sys
+import json
 import logging
 
 import firebase_admin
@@ -30,9 +31,14 @@ COLLECTION_NAME = "scan_results"
 
 
 def init_firebase():
-    cred_path = os.getenv("FIREBASE_CREDENTIALS", "firebase_credentials.json")
     if not firebase_admin._apps:
-        cred = credentials.Certificate(cred_path)
+        cred_json = os.getenv("FIREBASE_CREDENTIALS_JSON")
+        if cred_json and cred_json.strip():
+            cred = credentials.Certificate(json.loads(cred_json))
+        else:
+            cred = credentials.Certificate(
+                os.getenv("FIREBASE_CREDENTIALS", "firebase_credentials.json")
+            )
         firebase_admin.initialize_app(cred)
     return firestore.client()
 

@@ -4,6 +4,7 @@ Enhanced Firebase Service with manufacturer tracking
 """
 
 import os
+import json
 import uuid
 import logging
 from datetime import datetime
@@ -16,10 +17,16 @@ from dotenv import load_dotenv
 load_dotenv()
 logger = logging.getLogger(__name__)
 
-cred_path = os.getenv("FIREBASE_CREDENTIALS", "firebase_credentials.json")
-
 if not firebase_admin._apps:
-    cred = credentials.Certificate(cred_path)
+    # Prefer inline JSON from the environment (e.g. Railway Variables); fall
+    # back to a credentials file path for local development.
+    cred_json = os.getenv("FIREBASE_CREDENTIALS_JSON")
+    if cred_json and cred_json.strip():
+        cred = credentials.Certificate(json.loads(cred_json))
+    else:
+        cred = credentials.Certificate(
+            os.getenv("FIREBASE_CREDENTIALS", "firebase_credentials.json")
+        )
     firebase_admin.initialize_app(cred)
 
 db = firestore.client()
