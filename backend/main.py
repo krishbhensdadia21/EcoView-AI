@@ -4,6 +4,7 @@ EcoScan AI – FastAPI Application with all new features
 """
 
 import logging
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -25,10 +26,26 @@ app = FastAPI(
     version="2.0.0",
 )
 
+DEFAULT_ORIGINS = ["http://localhost:5173", "http://localhost:3000"]
+EXTRA_ORIGINS = [
+    origin.strip().rstrip("/")
+    for origin in os.getenv("ALLOWED_ORIGINS", "").split(",")
+    if origin.strip().rstrip("/")
+]
+ALLOWED_ORIGINS = DEFAULT_ORIGINS + [o for o in EXTRA_ORIGINS if o not in DEFAULT_ORIGINS]
+
+NGROK_ORIGIN_REGEX = r"https://.*\.ngrok-free\.app"
+CUSTOM_ORIGIN_REGEX = os.getenv("ALLOWED_ORIGIN_REGEX", "").strip()
+ALLOWED_ORIGIN_REGEX = (
+    f"({NGROK_ORIGIN_REGEX}|{CUSTOM_ORIGIN_REGEX})"
+    if CUSTOM_ORIGIN_REGEX
+    else NGROK_ORIGIN_REGEX
+)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000"],
-    allow_origin_regex=r"https://.*\.ngrok-free\.app",
+    allow_origins=ALLOWED_ORIGINS,
+    allow_origin_regex=ALLOWED_ORIGIN_REGEX,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
